@@ -1,0 +1,15 @@
+services:
+  filebrowser:
+    image: filebrowser/filebrowser:v2-s6
+    container_name: filebrowser
+    restart: unless-stopped
+    ports:
+      - "8080:80"
+    volumes:
+      - "/media/deb/New_Volume/Share:/srv"  # accessable dir
+      - "/home/deb/Dev/filebrowser/config:/config"  # config dir
+    networks:
+      - filebrowser-net
+
+networks:
+  filebrowser-net:

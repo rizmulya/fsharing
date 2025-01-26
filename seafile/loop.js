@@ -1,0 +1,1 @@
+const setLoopOnVideos=()=>{document.querySelectorAll("video").forEach((video=>{if(!video.hasAttribute("loop")){video.setAttribute("loop","true");console.log(`Video ${video.src} set to loop`)}}))};setLoopOnVideos();new MutationObserver(setLoopOnVideos).observe(document.body,{childList:true,subtree:true});

@@ -1,0 +1,36 @@
+services:
+  nextcloud:
+    image: nextcloud:30
+    container_name: nextcloud
+    restart: always
+    ports:
+      - "8080:80"
+    volumes:
+      - ./data:/var/www/html/data
+      - ./nextcloud/config:/var/www/html/config
+      - ./nextcloud/apps:/var/www/html/custom_apps
+      - ./nextcloud/themes:/var/www/html/themes
+    environment:
+      - PHP_MEMORY_LIMIT=512M
+      - NEXTCLOUD_TRUSTED_DOMAINS=${NEXTCLOUD_TRUSTED_DOMAINS}
+    networks:
+      - nextcloud_net
+
+  # db:
+  #   image: mariadb:10.11
+  #   container_name: mariadb
+  #   restart: always
+  #   command: --transaction-isolation=READ-COMMITTED --log-bin=binlog --binlog-format=ROW
+  #   volumes:
+  #     - ./db:/var/lib/mysql
+  #   environment:
+  #     MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+  #     MYSQL_DATABASE: ${MYSQL_DATABASE}
+  #     MYSQL_USER: ${MYSQL_USER}
+  #     MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+  #   networks:
+  #     - nextcloud_net
+
+networks:
+  nextcloud_net:
+    name: nextcloud_net

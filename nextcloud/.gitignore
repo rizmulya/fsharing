@@ -1,0 +1,12 @@
+# db
+db/
+
+# nextcloud
+nextcloud/
+data/
+config/
+apps/
+themes/
+
+# more
+.env
